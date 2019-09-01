@@ -6,21 +6,29 @@
       <carousel :index="index" />
       <button @click="index++" :verify="verifyIndex()" right>&gt;</button>
     </div>
-	<appFooter />
+    <div class="eventBus">
+      <brotherOne />
+      <brotherTwo />
+    </div>
+    <appFooter />
   </div>
 </template>
 
 <script>
 import navBar from "@/components/navBar";
 import carousel from "@/components/carousel";
-import appFooter from '@/components/appFooter'
+import appFooter from "@/components/appFooter";
+import brotherOne from "@/components/brotherOne";
+import brotherTwo from "@/components/brotherTwo";
 
 export default {
   name: "app",
   components: {
     navBar,
-	carousel,
-	appFooter
+    carousel,
+    appFooter,
+    brotherOne,
+    brotherTwo
   },
   data() {
     return {
@@ -37,6 +45,12 @@ export default {
         return false;
       }
     }
+  },
+
+  created() {
+    return setInterval(() => {
+      this.index++;
+    }, 2000);
   }
 };
 </script>
@@ -58,18 +72,21 @@ export default {
   grid-gap: 2rem;
 }
 
-button[left]{
-	background: linear-gradient(to right, #abbaab, #ffffff);
-	
+button[left] {
+  background: linear-gradient(to right, #abbaab, #ffffff);
 }
 
-button[right]{
-	background: linear-gradient(to right, #ffffff, #abbaab);
-	
+button[right] {
+  background: linear-gradient(to right, #ffffff, #abbaab);
 }
 
 button {
-	font-size: 2rem;
-	color: rgba(9, 4, 80, 0.6)
+  font-size: 2rem;
+  color: rgba(9, 4, 80, 0.6);
+}
+
+.eventBus {
+  display: flex;
+  justify-content: center;
 }
 </style>
